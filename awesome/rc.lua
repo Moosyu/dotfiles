@@ -577,6 +577,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- autostart
 
---awful.spawn.with_shell("discord")
+awful.spawn.with_shell("discord")
 --awful.spawn.with_shell("compton")
---awful.spawn.with_shell("steam")
+awful.spawn.with_shell("steam")
