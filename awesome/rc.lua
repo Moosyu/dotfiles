@@ -113,7 +113,11 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+
+-- %a is day of week eg tue, %b is month and %d is day eg 27, %1 turns it to 12 hour time
+-- %M is the minutes and %P is am or pm
+mytextclock = wibox.widget.textclock("%a %b %d, %l:%M%P ", 60)
+
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -216,7 +220,8 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
+            -- got rid of it saying us in the top
+            -- mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -577,6 +582,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- autostart
 
-awful.spawn.with_shell("discord")
+--awful.spawn.with_shell("discord")
 --awful.spawn.with_shell("compton")
-awful.spawn.with_shell("steam")
+--awful.spawn.with_shell("steam")
