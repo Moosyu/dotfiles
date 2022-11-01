@@ -1,3 +1,5 @@
+-- original location: ~/.config/awesome
+
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -248,9 +250,6 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- got rid of it saying us in the top
             -- mykeyboardlayout,
-            
-            -- volume
-            volume_widget(),
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
