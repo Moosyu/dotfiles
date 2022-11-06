@@ -120,6 +120,8 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- %a is day of week eg tue, %b is month and %d is day eg 27, %1 turns it to 12 hour time
 -- %M is the minutes and %P is am or pm
 mytextclock = wibox.widget.textclock("%a %b %d, %l:%M%P ", 60)
+local month_calendar = awful.widget.calendar_popup.month()
+month_calendar:attach( mytextclock, "tr", {on_hover = false} )
 
 
 -- Create a wibox for each screen and add it
