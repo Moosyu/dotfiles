@@ -7,6 +7,6 @@ return {
 		term = "kitty",
 		browser = "firefox",
 		editor = "vim",
-		launcher = "rofi -show run",
+		launcher = "rofi -show drun",
 	},
 }
