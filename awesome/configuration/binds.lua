@@ -5,10 +5,10 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 -- Aliases for the used keys
-modkey = "Mod4"
-shift = "Shift"
-ctrl = "Control"
-alt = "Mod1"
+local modkey = "Mod4"
+local shift = "Shift"
+local ctrl = "Control"
+local alt = "Mod1"
 
 
 
@@ -188,3 +188,18 @@ client.connect_signal("request::default_mousebindings", function()
 		),
 	})
 end)
+
+for i = 1, 6 do
+	awful.keyboard.append_global_keybindings({
+        -- View tag only.
+    	awful.key({ modkey }, "#" .. i + 9,
+                  function ()
+                        local screen = awful.screen.focused()
+                        local tag = screen.tags[i]
+                        if tag then
+                           tag:view_only()
+                        end
+                  end,
+                  {description = "view tag #"..i, group = "tag"})}
+		)end
+		
