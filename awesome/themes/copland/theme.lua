@@ -82,6 +82,7 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
+theme.cloud = theme.dir .. "/icons/cloud.png"
 
 -- lain related
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
@@ -275,16 +276,32 @@ theme.volume.bar:buttons(my_table.join (
             theme.volume.update()
           end)
 ))
+
 local volumebg = wibox.container.background(theme.volume.bar, "#474747", gears.shape.rectangle)
 local volumewidget = wibox.container.margin(volumebg, dpi(2), dpi(7), dpi(4), dpi(4))
 
 -- Weather
---[[ to be set before use
+
+
+local weathericon = wibox.widget.imagebox(theme.cloud)
+
 theme.weather = lain.widget.weather({
-    --APPID =
-    city_id = 2643743, -- placeholder (London)
+    APPID = "452ecc31577377f99188c5ca0b0224b2",
+    city_id = 2190324, -- it would be pretty nice if you didnt doxx me
+    units="metric",
+	settings = function()
+        descr = weather_now["weather"][1]["description"]:lower()
+        units = math.floor(weather_now["main"]["temp"])
+    	end
 })
---]]
+
+weathericon:buttons(my_table.join (
+          awful.button({}, 1, function()
+            awful.spawn(theme.weather.show(0))
+          end)
+        ))
+
+
 
 -- Separators
 local first     = wibox.widget.textbox(markup.font("Terminus 3", " "))
@@ -358,6 +375,8 @@ function theme.at_screen_connect(s)
             --theme.mail.widget,
             mpdicon,
             theme.mpd.widget,
+            bar_spr,
+            weathericon,
             bar_spr,
             --fsicon,
             --fswidget,
