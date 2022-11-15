@@ -25,6 +25,11 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- }}}
 
+naughty.config.defaults['icon_size'] = 40
+naughty.config.defaults.ontop = true
+naughty.config.defaults.timeout = 5
+naughty.config.defaults.position = 'top_right'
+
 -- {{{ Error handling
 
 -- Check if awesome encountered an error during startup and fell back to

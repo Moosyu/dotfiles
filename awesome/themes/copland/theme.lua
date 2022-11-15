@@ -16,7 +16,6 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme = {}
 theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/copland"
-theme.wallpaper = theme.dir .. "/wall.png"
 theme.font = "MesloLGLDZ Nerd Font 10.5"
 theme.fg_normal = "#CAD3F5"
 theme.fg_focus = "#C6A0F6"
@@ -30,8 +29,8 @@ theme.border_focus  = "#93B6FF"
 theme.taglist_fg_focus = "#B7BDF8"
 theme.taglist_bg_focus = "#24273A"
 theme.taglist_bg_normal = "#24273A"
-theme.titlebar_bg_normal                        = "#191919"
-theme.titlebar_bg_focus                         = "#262626"
+theme.titlebar_bg_normal = "#191919"
+theme.titlebar_bg_focus = "#262626"
 theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(130)
 theme.tasklist_disable_icon                     = true
@@ -155,7 +154,7 @@ theme.mpd = lain.widget.mpd({
 })
 
 -- Battery
-local baticon = wibox.widget.imagebox(theme.bat)
+--[[local baticon = wibox.widget.imagebox(theme.bat)
 local batbar = wibox.widget {
     forced_height    = dpi(1),
     forced_width     = dpi(59),
@@ -200,7 +199,7 @@ local batupd = lain.widget.bat({
     end
 })
 local batbg = wibox.container.background(batbar, "#474747", gears.shape.rectangle)
-local batwidget = wibox.container.margin(batbg, dpi(2), dpi(7), dpi(4), dpi(4))
+local batwidget = wibox.container.margin(batbg, dpi(2), dpi(7), dpi(4), dpi(4)) --]]
 
 -- /home fs
 --[[ commented because it needs Gio/Glib >= 2.54
@@ -254,7 +253,8 @@ theme.volume = lain.widget.alsabar {
         unmute       = theme.fg_normal
     }
 }
-theme.volume.tooltip.wibox.fg = theme.fg_focus
+theme.volume.tooltip.wibox.fg = theme.bg_normal
+
 theme.volume.bar:buttons(my_table.join (
           awful.button({}, 1, function()
             awful.spawn(string.format("%s -e alsamixer", awful.util.terminal))
@@ -323,13 +323,6 @@ function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
-    -- If wallpaper is a function, call it with the screen
-    local wallpaper = theme.wallpaper
-    if type(wallpaper) == "function" then
-        wallpaper = wallpaper(s)
-    end
-    gears.wallpaper.maximized(wallpaper, s, true)
-
     -- Tags
     awful.tag(awful.util.tagnames, s, awful.layout.layouts[1])
 
@@ -349,7 +342,47 @@ function theme.at_screen_connect(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+
+    s.mytasklist = awful.widget.tasklist {
+        screen   = s,
+        filter   = awful.widget.tasklist.filter.currenttags,
+        buttons  = awful.util.tasklist_buttons,
+        style    = {
+            shape_border_width = 1,
+            shape_border_color = '#777777',
+            shape  = gears.shape.rounded_rect,
+        },
+        layout   = {
+            spacing = 5,
+            layout  = wibox.layout.flex.horizontal
+        },
+        -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+        -- not a widget instance.
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            id     = 'icon_role',
+                            widget = wibox.widget.imagebox,
+                        },
+                        margins = 2,
+                        widget  = wibox.container.margin,
+                    },
+                    {
+                        id     = 'text_role',
+                        widget = wibox.widget.textbox,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = 10,
+                right = 10,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+        },
+    }
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
