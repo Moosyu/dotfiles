@@ -1,0 +1,72 @@
+.tab-background[selected="true"], 
+.tab-background[multiselected="true"] {background-image: none !important; background-color: #24273A !important;}
+.tab-background{ background-color: #24273A }
+.tabbrowser-tab:not([selected]):hover .tab-background {
+    background-color: #1E2030 !important;
+}
+
+
+/* https://github.com/Dook97/firefox-qutebrowser-userchrome/blob/master/userChrome.css */
+tab {
+	font-family: 'Jetbrains Mono', monospace;
+	font-weight: bold;
+	border: none !important;
+}
+
+
+/* https://www.userchrome.org/what-is-userchrome-css.html */
+#titlebar { --tab-min-height: 20px !important; }
+
+/*** Remove items from image context menu ***/
+
+/* Email Image... */
+#context-sendimage, 
+
+/* Set Image as Desktop Background... (and preceding separator) */
+#context-sep-setbackground, #context-setDesktopBackground,
+
+/* Inspect Accessibility Properties */
+#context-inspect-a11y
+{
+  display: none !important;
+}
+
+
+#PlacesToolbarItems toolbarbutton[container="true"]:not([query="true"]) .toolbarbutton-icon,
+:-moz-any(
+#PlacesToolbarItems,
+#PlacesChevronPopup,
+#BMB_bookmarksPopup,
+#bookmarksMenu,
+#OtherBookmarksPopup) menu[container="true"]:not([query="true"]) > .menu-iconic-left > .menu-iconic-icon,
+/* Standard folder -- in Sidebar, Library, Add/Edit Bookmark dialog */
+:-moz-any(
+#bookmarks-view, 
+#editBMPanel_folderTree, 
+#placesList, 
+#placeContent) treechildren::-moz-tree-image(container), 
+#editBMPanel_folderMenuList > .menulist-label-box > .menulist-icon,
+#editBMPanel_folderMenuList menupopup menuitem, 
+#editBMPanel_folderMenuList {
+  list-style-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgd2lkdGg9IjE2IgogICBoZWlnaHQ9IjE2IgogICB2aWV3Qm94PSIwIDAgMTYgMTYiCiAgIGZpbGw9IiNlOGJiMDAiCiAgIGZpbGwtb3BhY2l0eT0iY29udGV4dC1maWxsLW9wYWNpdHkiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2Zzk2OCIKICAgc29kaXBvZGk6ZG9jbmFtZT0iaW5kZXguc3ZnIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM5NzIiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJuYW1lZHZpZXc5NzAiCiAgICAgcGFnZWNvbG9yPSIjNTA1MDUwIgogICAgIGJvcmRlcmNvbG9yPSIjZWVlZWVlIgogICAgIGJvcmRlcm9wYWNpdHk9IjEiCiAgICAgaW5rc2NhcGU6c2hvd3BhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiM1MDUwNTAiCiAgICAgc2hvd2dyaWQ9ImZhbHNlIiAvPgogIDxyZWN0CiAgICAgc3R5bGU9Im9wYWNpdHk6MC4yO2ZpbGw6I2NjY2NjYztmaWxsLW9wYWNpdHk6MTtzdHJva2Utd2lkdGg6MC4zODkwMzciCiAgICAgd2lkdGg9IjE1Ljk5OTk5IgogICAgIGhlaWdodD0iOS44Mzc4MDg2IgogICAgIHg9IjYuMDM1NDI5NmUtMDciCiAgICAgeT0iNS4xNjIxOTE0IgogICAgIHJ4PSIwLjc5OTk5OTQyIgogICAgIHJ5PSIwLjc1Njc1NDM0IgogICAgIGlkPSJyZWN0Mi03MDgiIC8+CiAgPHBhdGgKICAgICBzdHlsZT0iZmlsbDojYjI4Y2UyO2ZpbGwtb3BhY2l0eToxO3N0cm9rZS13aWR0aDowLjM4OTAzNyIKICAgICBkPSJtIDAsMTEuNTk0NjE1IGMgMCwwLjQxOTI0MyAwLjM1NjgwMjQ3LDAuNzU2NzU5IDAuODAwMDA0MzksMC43NTY3NTkgSCAxNS4xOTk5OTYgQyAxNS42NDMxOTgsMTIuMzUxMzc0IDE2LDEyLjAxMzg1OCAxNiwxMS41OTQ2MTUgViAzLjI3MDI2MjYgQyAxNiwyLjg1MTAxODkgMTUuNjQzMTk4LDIuNTEzNTE4NyAxNS4xOTk5OTYsMi41MTM1MTg3IEggOCBDIDYuODAwMDAwOSwyLjUxMzUxODcgNi40MDAwMDYyLDEgNS4yMDAwMDY5LDEgSCAwLjgwMDAwNDM5IEMgMC4zNTY4MDI0NywxIDAsMS4zMzc1MTQzIDAsMS43NTY3NTk0IgogICAgIGlkPSJwYXRoNC0xOSIgLz4KICA8cmVjdAogICAgIHN0eWxlPSJvcGFjaXR5OjAuMjtmaWxsOiM0ZDRkNGQ7c3Ryb2tlLXdpZHRoOjAuMzg5MDM3IgogICAgIHdpZHRoPSIxNS45OTk5OSIKICAgICBoZWlnaHQ9IjkuODM3ODA4NiIKICAgICB4PSI2LjAzNTQyOTZlLTA3IgogICAgIHk9IjQuNDA1NDQ3NSIKICAgICByeD0iMC43OTk5OTk0MiIKICAgICByeT0iMC43NTY3NTQzNCIKICAgICBpZD0icmVjdDYtOTciIC8+CiAgPHJlY3QKICAgICBzdHlsZT0iZmlsbDojY2FkM2Y1O3N0cm9rZS13aWR0aDowLjM4OTAzNyIKICAgICB3aWR0aD0iMTQuMzk5OTkxIgogICAgIGhlaWdodD0iNi4wNTQwMzQ3IgogICAgIHg9IjAuODAwMDAwODUiCiAgICAgeT0iMy42NDg3MDI2IgogICAgIHJ4PSIwLjc5OTk5OTQyIgogICAgIHJ5PSIwLjc1Njc1NDM0IgogICAgIGlkPSJyZWN0OC04MiIgLz4KICA8cmVjdAogICAgIHN0eWxlPSJmaWxsOiNjNmEwZjY7ZmlsbC1vcGFjaXR5OjE7c3Ryb2tlLXdpZHRoOjAuMzg5MDM3IgogICAgIHdpZHRoPSIxNS45OTk5OSIKICAgICBoZWlnaHQ9IjkuODM3ODA4NiIKICAgICB4PSI2LjAzNTQyOTZlLTA3IgogICAgIHk9IjQuNzgzODMwNiIKICAgICByeD0iMC43OTk5OTk0MiIKICAgICByeT0iMC43NTY3NTQzNCIKICAgICBpZD0icmVjdDEwLTUzIiAvPgo8L3N2Zz4K") !important;
+}
+
+
+/* https://mrotherguy.github.io/firefox-csshacks/?file=selected_tab_gradient_border.css */
+.tab-background[selected]{
+    outline: none !important;
+    border: 2px solid transparent !important;
+    box-shadow: none !important;
+    background-clip: padding-box;
+  }
+  .tab-background[selected] > .tab-context-line{ margin: -5px 0 0 !important; }
+  .tabbrowser-tab[selected] > .tab-stack::before{
+    content: "";
+    display: -moz-box;
+    min-height: inherit;
+    border-radius: var(--tab-border-radius);
+    grid-area: 1/1;
+    margin-block: var(--tab-block-margin);
+    /* Edit gradient colors here */
+    background: repeat linear-gradient(90deg,#C6A0F6,#F5A97F,#7EC4E4)!important;
+  }
