@@ -8,14 +8,11 @@
     --toolbar-bgcolor: #24273a !important;
 }
 #TabsToolbar{ background: #24273a !important; }
-
-
-/* https://www.reddit.com/user/difool2nice/ */
 #alltabs-button { display: none !important; }
 
 /* https://github.com/Dook97/firefox-qutebrowser-userchrome/blob/master/userChrome.css */
 tab {
-	font-family: 'Jetbrains Mono', monospace;
+	font-family: 'JetbrainsMono NF', monospace;
 	font-weight: bold;
 	border: none !important;
 }
@@ -77,4 +74,11 @@ tab {
     margin-block: var(--tab-block-margin);
     /* Edit gradient colors here */
     background: repeat linear-gradient(90deg,#C6A0F6,#F5A97F,#7EC4E4)!important;
+  }
+  
+  #urlbar-background{
+    background-color: #181926 !important;
+  }
+  #urlbar .search-one-offs {
+    display: none !important;
   }
