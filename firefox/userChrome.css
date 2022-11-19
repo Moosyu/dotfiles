@@ -10,6 +10,9 @@
 #TabsToolbar{ background: #24273a !important; }
 
 
+/* https://www.reddit.com/user/difool2nice/ */
+#alltabs-button { display: none !important; }
+
 /* https://github.com/Dook97/firefox-qutebrowser-userchrome/blob/master/userChrome.css */
 tab {
 	font-family: 'Jetbrains Mono', monospace;
