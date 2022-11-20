@@ -64,21 +64,21 @@ tab {
     box-shadow: none !important;
     background-clip: padding-box;
   }
-  .tab-background[selected] > .tab-context-line{ margin: -5px 0 0 !important; }
-  .tabbrowser-tab[selected] > .tab-stack::before{
-    content: "";
-    display: -moz-box;
-    min-height: inherit;
-    border-radius: var(--tab-border-radius);
-    grid-area: 1/1;
-    margin-block: var(--tab-block-margin);
-    /* Edit gradient colors here */
-    background: repeat linear-gradient(90deg,#C6A0F6,#F5A97F,#7EC4E4)!important;
-  }
+.tab-background[selected] > .tab-context-line{ margin: -5px 0 0 !important; }
+.tabbrowser-tab[selected] > .tab-stack::before{
+  content: "";
+  display: -moz-box;
+  min-height: inherit;
+  border-radius: var(--tab-border-radius);
+  grid-area: 1/1;
+  margin-block: var(--tab-block-margin);
+  /* Edit gradient colors here */
+  background: repeat linear-gradient(90deg,#C6A0F6,#F5A97F,#7EC4E4)!important;
+}
   
-  #urlbar-background{
-    background-color: #181926 !important;
-  }
-  #urlbar .search-one-offs {
-    display: none !important;
-  }
+#urlbar-background{
+  background-color: #181926 !important;
+}
+#urlbar .search-one-offs {
+  display: none !important;
+}
