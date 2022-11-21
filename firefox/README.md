@@ -1,4 +1,13 @@
 # really awesome and cool userChrome tutorial 😎
+
+search about:config
+
+accept the risk
+
+in the config search type: toolkit.legacyUserProfileCustomizations.stylesheets
+
+change it to true
+
 search about:support
 
 open profile folder
