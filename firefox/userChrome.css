@@ -6,20 +6,26 @@
 }
 :root {
     --toolbar-bgcolor: #24273a !important;
+    /* doesnt work for me on linux for some reason if it doesnt work paste in whats at the buttom */
+    --tab-min-height: 16px !important;
 }
+
+
+#scrollbox {max-height: 30px !important;}
+
 #TabsToolbar{ background: #24273a !important; }
 #alltabs-button { display: none !important; }
 
 /* https://github.com/Dook97/firefox-qutebrowser-userchrome/blob/master/userChrome.css */
+/* change JetbrainsMono Nerd Font to JetbrainsMono NF if on windows
 tab {
-	font-family: 'JetbrainsMono NF', monospace;
+	font-family: 'JetbrainsMono Nerd Font', monospace;
 	font-weight: bold;
 	border: none !important;
 }
 
 
 /* https://www.userchrome.org/what-is-userchrome-css.html */
-#titlebar { --tab-min-height: 20px !important; }
 
 /*** Remove items from image context menu ***/
 
@@ -82,3 +88,28 @@ tab {
 #urlbar .search-one-offs {
   display: none !important;
 }
+
+
+/* if --tab-min-height doesnt work delete comments below (it isnt perfect but it works). https://www.reddit.com/r/FirefoxCSS/comments/oze4qi/comment/h8akar3/?utm_source=share&utm_medium=web2x&context=3 */
+/*
+    #tabbrowser-tab { 
+      max-height: 20px !important; 
+    }
+    
+    #titlebar {max-height: 36px !important}
+    
+    #titlebar-spacer {max-height: 20px !important}
+    
+    #tabs-newtab-button {max-height: 30px !important}
+    
+    #tab-content {
+      max-height: 15px !important; 
+      vertical-align: middle !important;
+    }
+    
+    #tab-background {
+      max-height: 20px !important;
+    }
+
+#scrollbox {max-height: 30px !important;}
+*/
