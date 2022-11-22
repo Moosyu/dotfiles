@@ -23,8 +23,15 @@ local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
                       require("awful.hotkeys_popup.keys")
 
+
+-- Theme
+beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
+
+
 -- }}}
-require("configuration")
+require("configuration.keybinds")
 
 likes = {
     terminal = "kitty",
@@ -94,29 +101,10 @@ awful.spawn.with_shell(
 -- }}}
 
 -- {{{ Variable definitions
-
-local themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7
-    "rainbow",         -- 8
-    "steamburn",       -- 9
-    "vertex"           -- 10
-}
-
-local chosen_theme = themes[2]
 local modkey = "Mod4"
 local altkey = "Mod1"
 local terminal = "kitty"
-local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
-local cycle_prev = true  -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "nvim"
-local browser = "firefox"
-local launcher = "rofi -show drun"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
@@ -185,7 +173,6 @@ awful.util.tasklist_buttons = gears.table.join(
      awful.button({ }, 5, function() awful.client.focus.byidx(-1) end)
 )
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
 
 -- }}}
 
@@ -267,19 +254,15 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 
 -- }}}
 
--- {{{ Mouse bindings
 
+-- {{{
 
--- }}}
+-- Layout 
 
--- {{{ Key bindings
-
--- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it work on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
 
 
 -- }}}
+
 
 -- {{{ Rules
 
@@ -415,4 +398,3 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("feh --bg-fill ~/Pictures/Backgrounds/6.png ~/Pictures/Backgrounds/35.jpg")
 awful.spawn.with_shell("lxsession")
 awful.spawn.with_shell("picom --experimental-backends")
-awful.spawn.with_shell("clipster -d")

@@ -1,0 +1,1 @@
+require("configuration.keybinds.binds")
