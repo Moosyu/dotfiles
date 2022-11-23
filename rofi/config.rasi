@@ -18,8 +18,8 @@ configuration {
 
 * {
     font: "JetBrains Mono Nerd Font 10";
-    border-colour:               #C6A0F6;
-    handle-colour:               #C6A0F6;
+    border-colour:               #93B6FF;
+    handle-colour:               #93B6FF;
     background-colour:           #24273A;
     foreground-colour:           #FFFFFF;
     alternate-background:        #272A3B;
@@ -29,7 +29,7 @@ configuration {
     urgent-foreground:           #24273A;
     active-background:           #ED8796;
     active-foreground:           #24273A;
-    selected-normal-background:  #C6A0F6;
+    selected-normal-background:  #93B6FF;
     selected-normal-foreground:  #24273A;
     selected-urgent-background:  #ED8796;
     selected-urgent-foreground:  #24273A;
