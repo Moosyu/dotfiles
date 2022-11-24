@@ -84,6 +84,7 @@ theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 theme.cloud = theme.dir .. "/icons/cloud.png"
+theme.shutdown_btn = theme.dir .. "/icons/power_btn.png"
 
 -- lain related
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
@@ -113,25 +114,28 @@ theme.cal = lain.widget.cal({
 -- Mail IMAP check
 --[[ to be set before use
 theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        mail  = ""
-        count = ""
-
-        if mailcount > 0 then
-            mail = "<span font='Terminus 5'> </span>Mail "
-            count = mailcount .. " "
-        end
-
-        widget:set_markup(markup(blue, mail) .. count)
+    timeout  = 180,ocal powermenupop = awful.popup {
+    ontop = true,
+    visible = false,
+    shape = gears.shape.rounded_rect,
+    border_width = 1,
+    border_color = "#93B6FF",
+    maximum_width = 400,
+    offset = {y = 5},
+    hide_on_right_click = true,
+    widget = button
+}.. count)
     end
 })
 --]]
 
+-- Powermenu
+
+
+
 -- MPD
+
+
 local mpdicon = wibox.widget.imagebox()
 theme.mpd = lain.widget.mpd({
     settings = function()
@@ -282,10 +286,6 @@ theme.volume.bar:buttons(my_table.join (
 local volumebg = wibox.container.background(theme.volume.bar, "#474747", gears.shape.rectangle)
 local volumewidget = wibox.container.margin(volumebg, dpi(2), dpi(7), dpi(4), dpi(4))
 
--- Weather
-
-
-
 
 -- Separators
 local first     = wibox.widget.textbox(markup.font("Terminus 3", " "))
@@ -321,6 +321,7 @@ function theme.at_screen_connect(s)
                            awful.button({}, 3, function () awful.layout.inc(-1) end),
                            awful.button({}, 4, function () awful.layout.inc( 1) end),
                            awful.button({}, 5, function () awful.layout.inc(-1) end)))
+
 
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
@@ -367,13 +368,40 @@ function theme.at_screen_connect(s)
             widget = wibox.container.background,
         },
     }
-    local power = ("configuration.powermenu.power")
+
+    local naughty       = require("naughty")
+
+    local powerbtn = wibox.widget.imagebox(theme.shutdown_btn)
+
+    local powermenupop = require("configuration.powermenu.popup")
+    awful.placement.top(powermenupop, { margins = {top = dpi(384)}, parent = awful.screen.focused()})
+    -- beautiful code 
+    powerbtn:buttons(my_table.join (
+              awful.button({}, 1, function()
+                if (powermenupop.visible == false)
+                then
+                    powermenupop.visible = true
+                else
+                    powermenupop.visible = false
+                end
+            end)
+            ))
+
+            local button = require("configuration.powermenu.powerbutton")
+            button:connect_signal("button::press", function(c, _, _, button)
+                if button == 1 then awful.spawn("shutdown now")
+                end
+            end)
+
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
+            small_spr,
+            powerbtn,
+            bar_spr,
             layout = wibox.layout.fixed.horizontal,
             small_spr,
             s.mylayoutbox,
@@ -416,3 +444,4 @@ function theme.at_screen_connect(s)
 end
 
 return theme
+

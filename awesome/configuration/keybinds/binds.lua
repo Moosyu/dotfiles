@@ -6,7 +6,8 @@
 -- ~~~~~~~~~~~~
 local awful         = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
-
+local wibox         = require("wibox")
+local gears         = require("gears")
 
 -- vars/misc
 -- ~~~~~~~~~
@@ -37,7 +38,6 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
     -- first one doesnt work for some reason
     awful.key({ }, ""),
-
 
 
     awful.key({ modkey }, "s",
