@@ -85,6 +85,12 @@ theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 theme.cloud = theme.dir .. "/icons/cloud.png"
 theme.shutdown_btn = theme.dir .. "/icons/power_btn.png"
+theme.restart_btn = theme.dir .. "/icons/restart_btn.png"
+theme.logout_btn = theme.dir .. "/icons/logout_btn.png"
+theme.wifi_full = theme.dir .. "/icons/wifi_full"
+theme.wifi_half = theme.dir .. "/icons/wifi_half"
+theme.wifi_empty = theme.dir .. "/icons/wifi_empty"
+theme.eth = theme.dir .. "/icons/ethernet"
 
 -- lain related
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
@@ -128,9 +134,6 @@ theme.mail = lain.widget.imap({
     end
 })
 --]]
-
--- Powermenu
-
 
 
 -- MPD
@@ -369,29 +372,14 @@ function theme.at_screen_connect(s)
         },
     }
 
-    local naughty       = require("naughty")
 
-    local powerbtn = wibox.widget.imagebox(theme.shutdown_btn)
+    -- power menu
+    local powerbtn = require("configuration.powermenu")
+    -- power menu was almost entirely taken from github.com/frankfutlg/weird.dots
+    -- love that guy
 
-    local powermenupop = require("configuration.powermenu.popup")
-    awful.placement.top(powermenupop, { margins = {top = dpi(384)}, parent = awful.screen.focused()})
-    -- beautiful code 
-    powerbtn:buttons(my_table.join (
-              awful.button({}, 1, function()
-                if (powermenupop.visible == false)
-                then
-                    powermenupop.visible = true
-                else
-                    powermenupop.visible = false
-                end
-            end)
-            ))
-
-            local button = require("configuration.powermenu.powerbutton")
-            button:connect_signal("button::press", function(c, _, _, button)
-                if button == 1 then awful.spawn("shutdown now")
-                end
-            end)
+    -- wifi widget
+    --
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })

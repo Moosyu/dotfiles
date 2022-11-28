@@ -1,19 +1,41 @@
-local awful = require("awful")
 local gears = require("gears")
-local button = require("configuration.powermenu.powerbutton")
+local wibox = require("wibox")
+local beautiful = require("beautiful")
+local dpi = require("beautiful.xresources").apply_dpi
+local awful = require("awful")
+local power_btn = require("configuration.powermenu.button")
 
-
-
-local powermenupop = awful.popup {
+local popup_box = wibox {
+    width = dpi(270),
+    height = dpi(90),
+    bg = beautiful.bg,
+    border_width = dpi(4),
+    border_color = beautiful.border_focus,
     ontop = true,
     visible = false,
-    shape = gears.shape.rounded_rect,
-    border_width = 1,
-    border_color = "#93B6FF",
-    maximum_width = 400,
-    offset = {y = 5},
-    hide_on_right_click = true,
-    widget = button
+    shape = function(cr, width, height)
+        gears.shape.rectangle(cr, width, height)
+    end
 }
 
-return powermenupop
+popup_box:setup {
+    power_btn { image = beautiful.shutdown_btn, onclick = "shutdown now" },
+    power_btn { image = beautiful.logout_btn, onclick = "shutdown now" },
+    power_btn { image = beautiful.restart_btn, onclick = "reboot" },
+    layout = wibox.layout.align.horizontal
+}
+
+
+awesome.connect_signal("widget::powermenu", function()
+    popup_box.visible = not popup_box.visible
+
+    awful.placement.centered(
+        popup_box,
+        {
+            margins = {
+                top = dpi(340), },
+            parent = awful.screen.focused()
+        }
+    )
+end)
+
