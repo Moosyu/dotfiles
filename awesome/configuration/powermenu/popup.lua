@@ -20,7 +20,7 @@ local popup_box = wibox {
 
 popup_box:setup {
     power_btn { image = beautiful.shutdown_btn, onclick = "shutdown now" },
-    power_btn { image = beautiful.logout_btn, onclick = "shutdown now" },
+    power_btn { image = beautiful.logout_btn, onclick = "awesome-client command 'awesome.quit()'" },
     power_btn { image = beautiful.restart_btn, onclick = "reboot" },
     layout = wibox.layout.align.horizontal
 }
