@@ -2,8 +2,9 @@
 Decided not to make it from scratch so I will editing copland theme I swear I'll change it up
 
 Installation guide:
+
 Dependencies:
-awesome-git alsa-utils mpd thats it i think
+```awesome-git alsa-utils mpd``` thats it i think
 
 then drag the folders and files you want into your ~/.config
 
