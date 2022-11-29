@@ -87,10 +87,10 @@ theme.cloud = theme.dir .. "/icons/cloud.png"
 theme.shutdown_btn = theme.dir .. "/icons/power_btn.png"
 theme.restart_btn = theme.dir .. "/icons/restart_btn.png"
 theme.logout_btn = theme.dir .. "/icons/logout_btn.png"
-theme.wifi_full = theme.dir .. "/icons/wifi_full"
-theme.wifi_half = theme.dir .. "/icons/wifi_half"
-theme.wifi_empty = theme.dir .. "/icons/wifi_empty"
-theme.eth = theme.dir .. "/icons/ethernet"
+theme.wifi_full = theme.dir .. "/icons/wifi_full.png"
+theme.wifi_half = theme.dir .. "/icons/wifi_half.png"
+theme.wifi_empty = theme.dir .. "/icons/wifi_empty.png"
+theme.eth = theme.dir .. "/icons/ethernet.png"
 
 -- lain related
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
@@ -379,8 +379,43 @@ function theme.at_screen_connect(s)
     -- love that guy
 
     -- wifi widget
-    --
-
+    local wifi_icon = wibox.widget {
+        image = theme.wifi_full,
+        resize = false,
+        widget = wibox.widget.imagebox
+    }
+    local eth_icon = wibox.widget.imagebox(theme.eth)
+    local net = lain.widget.net {
+        notify = "off",
+        wifi_state = "on",
+        eth_state = "on",
+        settings = function()
+            local eth0 = net_now.devices.eth0
+            if eth0 then
+                if eth0.ethernet then
+                    eth_icon:set_image(theme.eth)
+                else
+                    eth_icon:set_image()
+                end
+            end
+    
+            local wlan0 = net_now.devices.wlan0
+            if wlan0 then
+                if wlan0.wifi then
+                    local signal = wlan0.signal
+                    if signal < -83 then
+                        wifi_icon:set_image(theme.wifi_empty)
+                    elseif signal < -70 then
+                        wifi_icon:set_image(theme.wifi_half)
+                    elseif signal >= -53 then
+                        wifi_icon:set_image(theme.wifi_full)
+                    end
+                else
+                    wifi_icon:set_image()
+                end
+            end
+        end
+    }
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
     -- Add widgets to the wibox
@@ -408,6 +443,13 @@ function theme.at_screen_connect(s)
             mpdicon,
             theme.mpd.widget,
             bar_spr,
+            eth_icon,
+            bar_spr,
+            --fsicon,
+            --fswidget,
+            volicon,
+            volumewidget,
+            bar_spr,
             weather_widget({
                 api_key= secret.weather_api_key,
                 coordinates = secret.weather_coordinates,
@@ -420,11 +462,6 @@ function theme.at_screen_connect(s)
                 show_hourly_forecast = false,
                 show_daily_forecast = true,
             }),
-            bar_spr,
-            --fsicon,
-            --fswidget,
-            volicon,
-            volumewidget,
             bar_spr,
             mytextclock,
         },
