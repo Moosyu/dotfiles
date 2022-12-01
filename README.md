@@ -3,8 +3,8 @@ Decided not to make it from scratch so I will editing copland theme I swear I'll
 
 Installation guide:
 
-Dependencies:
-```awesome-git alsa-utils mpd``` thats it i think
+Dependencies (assuming you're using arch):
+```awesome-git alsa-utils mpd nerd-fonts-complete``` thats it i think
 
 then drag the folders and files you want into your ~/.config
 
