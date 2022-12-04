@@ -1,6 +1,7 @@
 # my really cool dotfiles
 originally stolen from [Awesome-copycats](https://github.com/lcpz/awesome-copycats)
-decided not to make it from scratch so i edited copland them i swear i changed it up
+
+decided not to make it from scratch so i edited copland i swear i changed it up
 
 installation guide:
 
