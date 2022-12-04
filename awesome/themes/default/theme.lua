@@ -91,7 +91,7 @@ theme.logout_btn = theme.dir .. "/icons/logout_btn.png"
 theme.wifi_full = theme.dir .. "/icons/wifi_full.png"
 theme.wifi_half = theme.dir .. "/icons/wifi_half.png"
 theme.wifi_empty = theme.dir .. "/icons/wifi_empty.png"
-theme.eth = theme.dir .. "/icons/ethernet.png"
+theme.widget_mem = theme.dir .. "/icons/mem.png"
 
 -- lain related
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
@@ -424,6 +424,13 @@ local net_wired = net_widgets.indicator({
 })
 net_wireless = net_widgets.wireless({interface="wlan0"})
 
+local memicon = wibox.widget.imagebox(theme.widget_mem)
+local memory = lain.widget.mem({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, mem_now.used .. "M "))
+    end
+})
+
 -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
     -- Add widgets to the wibox
@@ -447,6 +454,9 @@ net_wireless = net_widgets.wireless({interface="wlan0"})
             layout = wibox.layout.fixed.horizontal,
             small_spr,
             --theme.mail.widget,
+            bar_spr,
+            memicon,
+            memory,
             bar_spr,
             net_wireless,
             bar_spr,
