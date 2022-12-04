@@ -23,7 +23,6 @@ local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
                       require("awful.hotkeys_popup.keys")
 
-
 -- Theme
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
@@ -397,4 +396,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- autostart
 awful.spawn.with_shell("feh --bg-fill ~/Pictures/Backgrounds/6.png ~/Pictures/Backgrounds/35.jpg")
 awful.spawn.with_shell("lxsession")
-awful.spawn.with_shell("picom --experimental-backends")
+awful.spawn.with_shell("picom")

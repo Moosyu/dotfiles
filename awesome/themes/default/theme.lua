@@ -11,7 +11,8 @@ local awful = require("awful")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 local secret = require("secret")
-local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+local weather_widget = require("widgets.weather-widget.weather")
+local net_widgets = require("widgets.net_widgets")
 
 local awesome, client, os = awesome, client, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -25,7 +26,7 @@ theme.bg_normal = "#24273A"
 theme.bg_focus = "#1E2030"
 theme.fg_urgent = "#CAD3F5"
 theme.bg_urgent = "#ED8796"
-theme.border_width = dpi(1)
+theme.border_width = dpi(2)
 theme.border_normal = "#141414"
 theme.border_focus  = "#93B6FF"
 theme.taglist_fg_focus = "#93B6FF"
@@ -64,7 +65,7 @@ theme.layout_max                                = theme.dir .. "/icons/max.png"
 theme.layout_fullscreen                         = theme.dir .. "/icons/fullscreen.png"
 theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
-theme.useless_gap                               = 0
+theme.useless_gap                               = 3
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -379,44 +380,51 @@ function theme.at_screen_connect(s)
     -- love that guy
 
     -- wifi widget
-    local wifi_icon = wibox.widget {
+   --[[local wifi_icon = wibox.widget {
         image = theme.wifi_full,
         resize = false,
         widget = wibox.widget.imagebox
-    }
-    local eth_icon = wibox.widget.imagebox(theme.eth)
-    local net = lain.widget.net {
-        notify = "off",
-        wifi_state = "on",
-        eth_state = "on",
-        settings = function()
-            local eth0 = net_now.devices.eth0
-            if eth0 then
-                if eth0.ethernet then
-                    eth_icon:set_image(theme.eth)
-                else
-                    eth_icon:set_image()
-                end
-            end
-    
-            local wlan0 = net_now.devices.wlan0
-            if wlan0 then
-                if wlan0.wifi then
-                    local signal = wlan0.signal
-                    if signal < -83 then
-                        wifi_icon:set_image(theme.wifi_empty)
-                    elseif signal < -70 then
-                        wifi_icon:set_image(theme.wifi_half)
-                    elseif signal >= -53 then
-                        wifi_icon:set_image(theme.wifi_full)
-                    end
-                else
-                    wifi_icon:set_image()
-                end
+    } ]]--
+local wifi_icon = wibox.widget.imagebox()
+local eth_icon = wibox.widget.imagebox()
+theme.net = lain.widget.net {
+    notify = "off",
+    wifi_state = "on",
+    eth_state = "on",
+    settings = function()
+        local eth0 = net_now.devices.eth0
+        if eth0 then
+            if eth0.ethernet then
+                eth_icon:set_image(theme.eth)
+            else
+                eth_icon:set_image()
             end
         end
-    }
-    -- Create the wibox
+
+        local wlan0 = net_now.devices.wlan0
+        if wlan0 then
+            if wlan0.wifi then
+                local signal = wlan0.signal
+                if signal < -83 then
+                    wifi_icon:set_image(theme.wifi_empty)
+                elseif signal < -70 then
+                    wifi_icon:set_image(theme.wifi_half)
+                elseif signal >= -53 then
+                    wifi_icon:set_image(theme.wifi_full)
+                end
+            else
+                wifi_icon:set_image()
+            end
+        end
+    end
+}
+local net_wired = net_widgets.indicator({
+    interfaces  = {"enp1s0", "enp2s0", "enp3s0"},
+    timeout     = 5
+})
+net_wireless = net_widgets.wireless({interface="wlan0"})
+
+-- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -437,13 +445,15 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
             small_spr,
             --theme.mail.widget,
+            bar_spr,
+            net_wireless,
+            bar_spr,
+            net_wired,
             mpdicon,
             theme.mpd.widget,
-            bar_spr,
-            eth_icon,
+            theme.net.widget,
             bar_spr,
             --fsicon,
             --fswidget,
@@ -464,6 +474,9 @@ function theme.at_screen_connect(s)
             }),
             bar_spr,
             mytextclock,
+            bar_spr,
+            wibox.widget.systray(),
+            small_spr,
         },
     }
 end

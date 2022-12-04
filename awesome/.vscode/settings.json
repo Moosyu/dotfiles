@@ -3,5 +3,8 @@
         "awesome",
         "client",
         "likes"
+    ],
+    "Lua.diagnostics.disable": [
+        "redefined-local"
     ]
 }
