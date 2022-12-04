@@ -1,9 +1,11 @@
-# Stole all of it so far from [Awesome-copycats](https://github.com/lcpz/awesome-copycats)
-Decided not to make it from scratch so I will editing copland theme I swear I'll change it up
+# my really cool dotfiles
+originally stolen from [Awesome-copycats](https://github.com/lcpz/awesome-copycats)
 
-Installation guide:
+decided not to make it from scratch so i edited copland i swear i changed it up
 
-Dependencies (assuming you're using arch):
+installation guide:
+
+dependencies (assuming you're using arch):
 ```awesome-git alsa-utils mpd nerd-fonts-complete``` thats it i think
 
 then drag the folders and files you want into your ~/.config
