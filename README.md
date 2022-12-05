@@ -17,3 +17,7 @@ done
 its uncanny how easy it is
 
 # [Startpage](https://moosyu.github.io/dotfiles/firefox/startpage/index.html)
+
+screenshots
+<img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/2022-12-06_07-29.png">
+<img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/2022-12-06_07-29_1.png">
