@@ -3,7 +3,7 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi = require("beautiful.xresources").apply_dpi
 local awful = require("awful")
-local power_btn = require("configuration.powermenu.button")
+local power_btn = require("configuration.powermenu.textbox.button")
 
 local popup_box = wibox {
     width = dpi(270),
@@ -19,9 +19,9 @@ local popup_box = wibox {
 }
 
 popup_box:setup {
-    power_btn { image = beautiful.shutdown_btn, onclick = "shutdown now" },
-    power_btn { image = beautiful.logout_btn, onclick = "awesome-client command 'awesome.quit()'" },
-    power_btn { image = beautiful.restart_btn, onclick = "reboot" },
+    power_btn { icon = beautiful.shutdown_btn, onclick = "shutdown now" },
+    power_btn { icon = beautiful.logout_btn, onclick = "awesome-client command 'awesome.quit()'" },
+    power_btn { icon = beautiful.restart_btn, onclick = "reboot" },
     layout = wibox.layout.align.horizontal
 }
 

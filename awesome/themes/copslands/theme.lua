@@ -11,14 +11,12 @@ local awful = require("awful")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 local secret = require("secret")
-local weather_widget = require("widgets.weather-widget.weather")
+local weather_widget = require("widgets.weather_widget.weather")
 local net_widgets = require("widgets.net_widgets")
-
 local awesome, client, os = awesome, client, os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
-
 local theme = {}
-theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/default"
+theme.dir = os.getenv("HOME") .. "/.config/awesome/themes/copslands"
 theme.font = "JetBrainsMono Nerd Font 10.5"
 theme.fg_normal = "#CAD3F5"
 theme.fg_focus = "#93B6FF"
@@ -107,6 +105,8 @@ local green  = "#8FEB8F"
 --os.setlocale(os.getenv("LANG")) -- to localize the clock
 local mytextclock = wibox.widget.textclock("<span font='Terminus 5'> </span>%a %b %d, %l:%M%P")
 mytextclock.font = theme.font
+
+awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 
 -- Calendar
 theme.cal = lain.widget.cal({
@@ -375,7 +375,7 @@ function theme.at_screen_connect(s)
 
 
     -- power menu
-    local powerbtn = require("configuration.powermenu")
+    local powerbtn = require("configuration.powermenu.imagebox")
     -- power menu was almost entirely taken from github.com/frankfutlg/weird.dots
     -- love that guy
 

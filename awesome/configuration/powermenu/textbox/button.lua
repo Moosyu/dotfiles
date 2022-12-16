@@ -4,23 +4,23 @@ local beautiful = require("beautiful")
 local dpi = require("beautiful").xresources.apply_dpi
 
 local power_btn = function(args)
-	local image = args.image
+	local icon = args.icon
 	local onclick = args.onclick or function() end
 
 	local btn = wibox.widget {
 		{
 			{
-				image = image,
+				markup = icon,
 				scaling_quality = "nearest",
 				align = "center",
 				valign = "center",
-				widget = wibox.widget.imagebox
+				widget = wibox.widget.textbox
 			},
-
+			valign = 'center',
 			margins = dpi(25),
 			widget = wibox.container.margin
 		},
-	
+
 		id = "btn_role",
 		bg = beautiful.bg,
 		widget = wibox.container.background

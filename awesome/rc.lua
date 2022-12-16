@@ -22,15 +22,12 @@ local lain          = require("lain")
 local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
                       require("awful.hotkeys_popup.keys")
+                      require("configuration.keybinds.binds")
 
 -- Theme
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
-beautiful.init(theme_path)
-
-
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "nevar"))
 -- }}}
-require("configuration.keybinds")
+
 
 likes = {
     terminal = "kitty",
@@ -106,7 +103,6 @@ local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "nvim"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -148,7 +144,7 @@ awful.util.taglist_buttons = gears.table.join(
     awful.button({ }, 1, function(t) t:view_only() end),
     awful.button({ modkey }, 1, function(t)
         if client.focus then client.focus:move_to_tag(t) end
-    end),
+   end),
     awful.button({ }, 3, awful.tag.viewtoggle),
     awful.button({ modkey }, 3, function(t)
         if client.focus then client.focus:toggle_tag(t) end
@@ -223,19 +219,6 @@ end)
 
 -- {{{ Screen
 
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", function(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, true)
-    end
-end)
-
 -- No borders when rearranging only 1 non-floating or maximized client
 screen.connect_signal("arrange", function (s)
     local only_one = #s.tiled_clients == 1
@@ -251,16 +234,6 @@ end)
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
--- }}}
-
-
--- {{{
-
--- Layout 
-
-
-
--- }}}
 
 
 -- {{{ Rules
@@ -394,6 +367,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- autostart
-awful.spawn.with_shell("feh --bg-fill ~/Pictures/Backgrounds/6.png ~/Pictures/Backgrounds/35.jpg")
+awful.spawn.with_shell("feh --bg-fill ~/Pictures/Backgrounds/42.jpg ~/Pictures/Backgrounds/41.jpg")
 awful.spawn.with_shell("lxsession")
 awful.spawn.with_shell("picom")

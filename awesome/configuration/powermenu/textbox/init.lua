@@ -1,13 +1,12 @@
-local beautiful = require("beautiful")
 local wibox = require("wibox")
 local gears = require("gears")
 local awful = require("awful")
 
-require("configuration.powermenu.popup")
-require("configuration.powermenu.button")
+require("configuration.powermenu.textbox.popup")
+require("configuration.powermenu.textbox.button")
 
 
-local powerbtn = wibox.widget.imagebox(beautiful.shutdown_btn)
+local powerbtn = wibox.widget.textbox('<span foreground="#BF616A">  </span>')
 
 powerbtn:buttons(gears.table.join (
     awful.button({}, 1, function()
