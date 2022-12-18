@@ -19,5 +19,10 @@ its uncanny how easy it is
 # [Startpage](https://moosyu.github.io/dotfiles/firefox/startpage/index.html)
 
 screenshots
+## Copslands [edited version of this](https://github.com/lcpz/awesome-copycats/tree/master/themes/copland)
 <img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/2022-12-06_07-29.png">
 <img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/2022-12-06_07-29_1.png">
+
+## Nevar was my attempt at using [nord](https://www.nordtheme.com/)
+<img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/gscreenshot_2022-12-18-202815.png">
+<img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/gscreenshot_2022-12-18-202923.png">
