@@ -26,3 +26,5 @@ screenshots
 ## Nevar was my attempt at using [nord](https://www.nordtheme.com/)
 <img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/gscreenshot_2022-12-18-202815.png">
 <img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/gscreenshot_2022-12-18-202923.png">
+
+i switched back to kde recently so the awesomewm ones will probably break at some point sorry
