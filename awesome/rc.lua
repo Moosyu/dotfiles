@@ -25,7 +25,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
                       require("configuration.keybinds.binds")
 
 -- Theme
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "nevar"))
+beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "plane"))
 -- }}}
 
 
@@ -106,12 +106,12 @@ awful.util.terminal = terminal
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    --awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.bottom,
+    --awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
+    awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
     --awful.layout.suit.max.fullscreen,
@@ -367,6 +367,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 -- autostart
-awful.spawn.with_shell("feh --bg-fill ~/Pictures/Backgrounds/42.jpg ~/Pictures/Backgrounds/41.jpg")
+awful.spawn.with_shell("feh --bg-fill ~/Documents/Backgrounds/50.jpg")
 awful.spawn.with_shell("lxsession")
 awful.spawn.with_shell("picom")

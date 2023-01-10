@@ -44,6 +44,16 @@ awful.keyboard.append_global_keybindings({
         hotkeys_popup.show_help,
     {description="show help", group="awesome"}),
 
+    awful.key({ modkey, ctrl, alt }, "r",
+    function() awful.spawn("reboot")
+        end,
+    {description = "restart pc", group = "computer"}),
+
+    awful.key({ modkey, ctrl, alt }, "q",
+    function() awful.spawn("shutdown now")
+        end,
+    {description = "shutdown pc", group = "computer"}),
+
     awful.key({ modkey, ctrl }, "r",
         awesome.restart,
     {description = "reload awesome", group = "awesome"}),
