@@ -28,6 +28,6 @@ screenshots
 <img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/gscreenshot_2022-12-18-202923.png">
 
 ## Plane was my attempt top copy what luke smiths dwm looks like (and his terminal)
-<img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/gscreenshot_2022-12-18-202815.png">
+<img src="https://raw.githubusercontent.com/Moosyu/dotfiles/main/screenshots/Screenshot_2023-01-10_09-19-23.png">
 
 i switched to xfce recently so the awesomewm ones will probably break at some point sorry
